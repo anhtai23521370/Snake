@@ -8,6 +8,19 @@ using namespace std;
 void gotoxy( int column, int line );
 void SetColor(WORD color);
 void ShowCur(bool CursorVisibility);
+void colorbg(int color); //hàm tô màu nền
+void vetuong();
+void tomau(int x, int y);
+void G(int x, int y);
+void A(int x, int y);
+void M(int x, int y);
+void E(int x, int y);
+void O(int x, int y);
+void V(int x, int y);
+void R(int x, int y);
+boolean dk();
+void play();
+boolean gover();
 
 
 struct Point{
@@ -185,10 +198,49 @@ public:
 };
 
 
-void vetuong();
+
 
 
 int main()
+{
+    int i=1;
+    while(i)
+    {
+        system("cls");
+        play();
+        if (gover()) i=1;
+        else i=0;
+    }
+    
+    return 0;
+}
+
+boolean gover()
+{
+    system("cls");
+    SetColor(15);
+    G(22,5);
+    A(31,5);
+    M(40,5);
+    E(49,5);
+    O(61,5);
+    V(70,5);
+    E(79,5);
+    R(88,5);
+    gotoxy(54,16);
+    colorbg(0);
+    cout<<"PLAY AGAIN ?";
+    gotoxy(50, 18);
+    colorbg(3);
+    cout<<"YES";
+    gotoxy(67,18);
+    colorbg(0);
+    cout<<"NO";
+    if (dk() ) return true;
+    else return false;
+}
+
+void play()
 {
     CONRAN r;
     int s=1,Huong = 0;
@@ -216,7 +268,6 @@ int main()
                 else if (t==80 && Huong2!=3) Huong = 1;
             }
         }
-        //system("cls");
         r.Ve();
         r.xoa();
         r.DiChuyen(Huong);
@@ -227,12 +278,7 @@ int main()
         b++;
         if(b==1000) r.effect=0;
     }
-    SetColor(15);
-    gotoxy(1,30);
-    cout<<"GAME OVER";
-    return 0;
 }
-
 
 void gotoxy( int column, int line )
 {
@@ -290,4 +336,323 @@ void ShowCur(bool CursorVisibility)
 	HANDLE handle = GetStdHandle(STD_OUTPUT_HANDLE);
 	CONSOLE_CURSOR_INFO cursor = { 1, CursorVisibility };
 	SetConsoleCursorInfo(handle, &cursor);
+}
+
+void colorbg(int color) {
+    // Lấy handle của cửa sổ console
+    HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
+
+    // Lấy thông tin hiện tại của console
+    CONSOLE_SCREEN_BUFFER_INFO consoleInfo;
+    GetConsoleScreenBufferInfo(hConsole, &consoleInfo);
+
+    // Thay đổi màu nền mà không thay đổi màu văn bản
+    WORD colorAttributes = consoleInfo.wAttributes;
+    SetConsoleTextAttribute(hConsole, (color << 4) | (colorAttributes & 0x0F));
+}
+
+void tomau(int x, int y)
+{
+    if (y==5)
+    {
+        gotoxy(x,y);
+        colorbg(15);
+        cout<<" "<<endl;
+    }
+    else if (y==6 )
+    {
+        gotoxy(x,y);
+        colorbg(11);
+        cout<<" "<<endl;
+    }
+    else if (y==7 )
+    {
+        gotoxy(x,y);
+        colorbg(3);
+        cout<<" "<<endl;
+    }
+    else if (y==8)
+    {
+        gotoxy(x,y);
+        colorbg(9);
+        cout<<" "<<endl;
+    }
+    else if (y==9)
+    {
+        gotoxy(x,y);
+        colorbg(1);
+        cout<<" "<<endl;
+    }
+    else if (y==10)
+    {
+        gotoxy(x,y);
+        colorbg(1);
+        cout<<" "<<endl;
+    }
+}
+
+void G(int x, int y)
+{
+    for(int i=0; i<6; i++)
+    {
+         tomau(x+1+i, y);
+         
+         tomau(x+1+i, y+5);
+         
+    }
+    for(int i=0; i<4; i++)
+    {
+         tomau(x,y+1+i);
+         
+         tomau(x+1,y+1+i);
+         
+    }
+     tomau(x+7, y+1);
+     
+     tomau(x+6, y+1);
+     
+
+     tomau(x+5, y+3);
+     
+     tomau(x+6, y+3);
+     
+
+     tomau(x+7, y+4);
+     
+     tomau(x+6, y+4);
+     
+
+     tomau(x+1, y);
+     
+     tomau(x+7, y+3);
+     
+    
+}
+
+void A(int x, int y)
+{
+    for(int i=0; i<4; i++)
+    {
+         tomau(x+2+i,y);
+         
+         tomau(x+2+i, y+3);
+         
+    }
+
+    for(int i=0; i<4; i++)
+    {
+         tomau(x,y+2+i);
+         
+         tomau(x+1,y+2+i);
+         
+         tomau(x+7,y+2+i);
+         
+         tomau(x+6,y+2+i);
+         
+    }
+
+     tomau(x+1,y+1);
+     
+     tomau(x+2, y+1);
+     
+     tomau(x+5,y+1);
+     
+     tomau(x+6, y+1);
+     
+}
+
+void M(int x, int y)
+{
+    for(int i=0; i<5; i++)
+    {
+         tomau(x,y+1+i);
+         
+         tomau(x+1,y+1+i);
+         
+         tomau(x+7,y+1+i);
+         
+         tomau(x+6,y+1+i);
+         
+    }
+     tomau(x,y);
+     
+     tomau(x+7,y);
+     
+     tomau(x+2,y+1);
+     
+     tomau(x+5,y+1);
+     
+     tomau(x+4,y+2);
+     
+     tomau(x+3,y+2);
+     
+
+}
+
+void E(int x, int y)
+{
+    for(int i=0; i<6; i++)
+    {
+         tomau(x,y+i);
+         
+         tomau(x+1,y+i);
+             
+    }
+    for(int i=0; i<6; i++)
+    {
+         tomau(x+2+i,y);
+         
+         tomau(x+2+i,y+2);
+         
+         tomau(x+2+i,y+5);
+         
+    }
+}
+
+void O(int x, int y)
+{
+    for(int i=0; i<6; i++)
+    {
+         tomau(x+1+i, y);
+         
+         tomau(x+1+i, y+5);
+         
+    }
+    for(int i=0; i<4; i++)
+    {
+         tomau(x, y+1+i);
+         
+         tomau(x+1, y+1+i);
+         
+         tomau(x+6, y+1+i);
+         
+         tomau(x+7, y+1+i);
+         
+    }
+}
+
+void V(int x, int y)
+{
+    for(int i=0; i<4; i++)
+    {
+         tomau(x,y+i);
+         
+         tomau(x+1,y+i);
+         
+         tomau(x+6,y+i);
+         
+         tomau(x+7,y+i);
+         
+    }
+    for(int i=0; i<6; i++)
+    {
+         tomau(x+1+i, y+4);     
+    }
+     tomau(x+2, y+3);
+     
+     tomau(x+5, y+3);
+     
+     tomau(x+4, y+5);
+     
+     tomau(x+3, y+5);
+     
+}
+
+void R(int x, int y)
+{
+    for(int i=0; i<6;i++)
+    {
+         tomau(x,y+i);
+         
+         tomau(x+1,y+i);
+         
+    }
+
+    for(int i=0; i<5;i++)
+    {
+         tomau(x+2+i,y);
+         
+         tomau(x+2+i,y+2);
+         
+    }
+     tomau(x+7,y+1);
+     
+     tomau(x+6,y+1);
+     
+     tomau(x+4,y+3);
+     
+     tomau(x+5,y+3);
+     
+     tomau(x+5,y+4);
+     
+     tomau(x+6,y+4);
+     
+     tomau(x+6,y+5);
+     
+     tomau(x+7,y+5);
+     
+
+
+}
+
+boolean dk()
+{
+    char t;
+    int i=1;
+    while(1)
+    {
+        if (kbhit())
+            {
+                t = getch();
+                if (t=='a')
+                {
+                    i=1;
+                    gotoxy(50, 18);
+                    colorbg(3);
+                    cout<<"YES";
+                    gotoxy(67,18);
+                    colorbg(0);
+                    cout<<"NO";
+                }
+                else if (t=='d')
+                {
+                    i=0;
+                    gotoxy(50, 18);
+                    colorbg(0);
+                    cout<<"YES";
+                    gotoxy(67,18);
+                    colorbg(4);
+                    cout<<"NO";
+                }
+                else if (t==-32)
+                {
+                    t=getch();
+                    if (t==75)
+                    {
+                        i=1;
+                        gotoxy(50, 18);
+                        colorbg(3);
+                        cout<<"YES";
+                        gotoxy(67,18);
+                        colorbg(0);
+                        cout<<"NO";
+                    }
+                    else if (t==77 )
+                    {
+                        i=0;
+                        gotoxy(50, 18);
+                        colorbg(0);
+                        cout<<"YES";
+                        gotoxy(67,18);
+                        colorbg(4);
+                        cout<<"NO";
+                    }
+                }
+                if(t==13)
+                {
+                    if(i==1) return true;
+                    else if (i==0 ) return false;
+                }
+            }
+    }
 }
