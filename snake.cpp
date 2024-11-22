@@ -4,7 +4,9 @@
 #include <conio.h>
 #include <ctime>
 #include "windows.h"
+
 using namespace std;
+
 void gotoxy( int column, int line );
 void SetColor(WORD color);
 void ShowCur(bool CursorVisibility);
@@ -37,7 +39,7 @@ public:
 
     void Ve()
     {   
-        if (effect!=1)
+        if (effect != 1)
         {
             for (int i = 0; i < DoDai; i++)
             {
@@ -70,10 +72,9 @@ public:
         A[DoDai].y=A[DoDai-1].y;
     }
 
-    void DiChuyen(int Huong)
-    {
+    void DiChuyen(int Huong){
         
-        for (int i = DoDai-1; i>0;i--)
+        for (int i = DoDai - 1; i > 0; i--)
             A[i] = A[i-1];
         if (Huong==0) A[0].x = A[0].x + 1;
         if (Huong==1) A[0].y = A[0].y + 1;
@@ -84,14 +85,14 @@ public:
 
     boolean gameover()
     {
-        for(int i=1; i<DoDai; i++)
+        for(int i = 1; i < DoDai; i++)
         {
             if ( A[0].sosanhbang(A[i]) ) 
             {
                 return false;
             }
         }
-        if(effect!=1)
+        if(effect != 1)
         {
             if( A[0].x==99 ||  A[0].x==1 || A[0].y==1 || A[0].y==26  )
             {
@@ -100,7 +101,7 @@ public:
         }
         else 
         {
-            if (A[0].x==99) A[0].x=2;
+            if (A[0].x == 99) A[0].x=2;
             else if (A[0].x==1) A[0].x=98;
             else if (A[0].y==1) A[0].y=25;
             else if (A[0].y==26) A[0].y=2;
