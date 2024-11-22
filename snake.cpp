@@ -14,7 +14,7 @@ void ShowCur(bool CursorVisibility);
 
 struct Point{
 public:
-    int x,y;
+    int x, y;
     boolean sosanhbang(Point a)
     {
         if ( x==a.x && y==a.y) return true;
@@ -117,7 +117,7 @@ public:
             srand(time(NULL));
             a.x=rand()%(98-2+1)+2;
             a.y=rand()%(25-2+1)+2;
-            for(int i=1; i<DoDai; i++)
+            for(int i = 1; i<DoDai; i++)
             {
                 if(a.sosanhbang(A[i]) || a.sosanhbang(b))
                 {
@@ -151,13 +151,13 @@ public:
         
         if(a.sosanhbang(A[0]))
         {
-            effect=1;
-            s=1;
+            effect = 1;
+            s = 1;
         }
 
 
 
-        if(s==1 && DoDai%10==0)
+        if(s == 1 && DoDai%10 == 0)
         {
             qua(a,1,c);
             DoDai++;
