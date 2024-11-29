@@ -70,6 +70,7 @@ public:
                 cout<<"X";
             }
         }
+	    SetColor(15);
         gotoxy(A[DoDai].x,A[DoDai].y);
         cout<<" ";
 
