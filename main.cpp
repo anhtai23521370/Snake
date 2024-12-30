@@ -1,4 +1,4 @@
-﻿#include"include.h"
+﻿#include "include.h"
 void initScore() {
     if (isEmpty()) {
         for (int i = 0; i < 5; i++) {
